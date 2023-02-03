@@ -6,10 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-    
+        <div class="container is-flex-direction-row">
+          <h1 class="title is-justify-content-center">
+            Crime Watcher
+          </h1>
+          <p class="subtitle is-justify-content-center">
+            Website for <strong>travelers</strong>!
+          </p>
+        </div>
 
+        <div class="level container is-max-desktop is-flex-direction-row is-justify-content-center">
+          <div class="field has-addons level-item">
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter Zip Code">
+            </div>
+            <div class="control">
+              <a class="button is-info">
+                Search
+              </a>
+            </div>
+          </div>
+          <button id="get-location" class="button is-danger level-item">View Crime Near Me</button>
+        </div>
+
+       
+        <!-- <button class="button" id="get-location" type="button"><ion-icon name="navigate-outline"></ion-icon></button> -->
+   
+      
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
