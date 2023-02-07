@@ -1,6 +1,24 @@
 var currentLong;
 var currentLat;
 
+
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b',
+		'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
+	}
+};
+
+fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
+    
+
+
 let button = document.getElementById("get-location");
 
 // Get current location 
