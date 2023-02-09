@@ -43,7 +43,6 @@ var listingContainer = document.getElementById('page-listings')
 //         }
     
     
-      
     
 //     getDestinationId("test")
     
@@ -94,6 +93,7 @@ function getResultsByCoordinates(lat, long) {
         .catch(err => console.error(err));
 }
 
+
 // Add each lisitng to page
 function displayResults(listing) {
     
@@ -106,19 +106,28 @@ function displayResults(listing) {
     var hotelReviewWord = listing.review_word;
     var hotelBookLink = listing.url;
 
-    var resultObject = document.createElement('div');
-        resultObject.setAttribute('class', 'block');
-        resultObject.innerHTML = hotelName;
+    // Listing DOM Elements
+    // Card container
+    var listingObject = document.createElement('div');        
+        listingObject.setAttribute('class', 'block has-background-dark');
+        listingObject.innerHTML = hotelName;
+    // Listing card
+    // var listingCard = document.createElement('div')
+    //     listingCard.setAttribute('class', 'card');
+    // // Lisitng card image
+    // var listingImage = document.createElement('div')
+    //     listingImage.setAttribute('class', 'card-image');
+    //     // Append image container to listing card
+    //     listingCard.appendChild(listingImage);
 
-        listingContainer.appendChild(resultObject);
+    // // Listing Title
+    // var listingTitle = document.createElement
+        
+        
+        // Append listing card to HTML container
+        listingContainer.appendChild(listingObject);
 
 
-        // We can pass list of attributes for as an object
-        // Object.assign(resultObject, {        
-        // autocomplete: 'none',        
-        // placeholder: "Initials",
-        // id: 'initials'
-        // })
 
 
 }
