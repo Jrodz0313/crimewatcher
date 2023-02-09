@@ -1,3 +1,0 @@
-function buildListing(listing) {
-    
-}
