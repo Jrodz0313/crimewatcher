@@ -169,7 +169,9 @@ usZip.addEventListener("keypress", function (event) {
     }
   });
 
-{/* <table class="table">
+  
+
+/* <table class="table">
     <thead>
         <tr>
             <th><abbr title="Image">Pos</abbr></th>
@@ -187,4 +189,4 @@ usZip.addEventListener("keypress", function (event) {
             <td>4</td>
         </tr>
     </tbody>
-</table> */}
+</table> */
