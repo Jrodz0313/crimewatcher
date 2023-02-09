@@ -1,56 +1,55 @@
 var currentLong;
 var currentLat;
 
+var listingContainer = document.getElementById('page-listings')
 
+// const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': 'f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b',
+// 		'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
+// 	}
+// };
 
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b',
-		'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
-	}
-};
-
-fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
+// fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
+// 	.then(response => response.json())
+// 	.then(response => console.log(response))
+// 	.catch(err => console.error(err));
 
     
-    function getDestinationId(location) {
-        const locale = "en-us"
+//     function getDestinationId(location) {
+//         const locale = "en-us"
         
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': 'f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b',
-                'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
-            }
-        };
+//         const options = {
+//             method: 'GET',
+//             headers: {
+//                 'X-RapidAPI-Key': 'f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b',
+//                 'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
+//             }
+//         };
         
-        var searchLocationsUrlString = "https://booking-com.p.rapidapi.com/v1/hotels/locations?locale=en-us&name=" + location
+//         var searchLocationsUrlString = "https://booking-com.p.rapidapi.com/v1/hotels/locations?locale=en-us&name=" + location
         
-        fetch(searchLocationsUrlString, options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
-        console.log(response)
-        var result = JSON.parse(response)
-        var destinationId = result[0].destinationId
-        console.log(destinationId)
-        // get destinatioId extracted 
-        return destinationId
-      }
+//         fetch(searchLocationsUrlString, options)
+//         .then(response => response.json())
+//         .then(response => console.log(response))
+//         .catch(err => console.error(err));
+//         // console.log(response)
+//         var result = JSON.parse(response)
+//         var destinationId = result[0].destinationId
+//         console.log(destinationId)
+//         // get destinatioId extracted 
+//         return destinationId
+//         }
     
     
-      
     
-    getDestinationId("test")
+//     getDestinationId("test")
     
-        fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+//         fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
+//         .then(response => response.json())
+//         .then(response => console.log(response))
+//         .catch(err => console.error(err));
     
 
     
@@ -94,6 +93,7 @@ function getResultsByCoordinates(lat, long) {
         .catch(err => console.error(err));
 }
 
+
 // Add each lisitng to page
 function displayResults(listing) {
     
@@ -105,6 +105,31 @@ function displayResults(listing) {
     var hotelReviewScore = listing.review_score;
     var hotelReviewWord = listing.review_word;
     var hotelBookLink = listing.url;
+
+    // Listing DOM Elements
+    // Card container
+    var listingObject = document.createElement('div');        
+        listingObject.setAttribute('class', 'block has-background-dark');
+        listingObject.innerHTML = hotelName;
+    // Listing card
+    // var listingCard = document.createElement('div')
+    //     listingCard.setAttribute('class', 'card');
+    // // Lisitng card image
+    // var listingImage = document.createElement('div')
+    //     listingImage.setAttribute('class', 'card-image');
+    //     // Append image container to listing card
+    //     listingCard.appendChild(listingImage);
+
+    // // Listing Title
+    // var listingTitle = document.createElement
+        
+        
+        // Append listing card to HTML container
+        listingContainer.appendChild(listingObject);
+
+
+
+
 }
 
 button.addEventListener("click", () => {
@@ -138,14 +163,15 @@ usZip.addEventListener("keypress", function (event) {
         .then((response) => response.json())
         .then(function (data) {
           console.log(data);
-  
+
         });
       event.preventDefault();
     }
   });
 
   
-{/* <table class="table">
+
+/* <table class="table">
     <thead>
         <tr>
             <th><abbr title="Image">Pos</abbr></th>
@@ -163,4 +189,4 @@ usZip.addEventListener("keypress", function (event) {
             <td>4</td>
         </tr>
     </tbody>
-</table> */}
+</table> */
