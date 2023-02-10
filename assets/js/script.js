@@ -30,7 +30,7 @@ const options = {
 };
 
 function getDestinationId(location) {
-//   const locale = "en-us";
+  //   const locale = "en-us";
 
   const options = {
     method: "GET",
@@ -41,54 +41,52 @@ function getDestinationId(location) {
   };
 
   var searchLocationsUrlString =
-    "https://booking-com.p.rapidapi.com/v1/hotels/locations?locale=" + "en-us" + "&name=" +
+    "https://booking-com.p.rapidapi.com/v1/hotels/locations?locale=" +
+    "en-us" +
+    "&name=" +
     location;
 
   fetch(searchLocationsUrlString, options)
     .then((response) => response.json())
-    .then((response) => (response))
+    .then((response) => response)
     .catch((err) => console.error(err));
-//   console.log(response);
-//   var result = JSON.parse(response);
-//   var destinationId = result[0].destinationId;
-//   console.log(destinationId);
-//   // get destinationId extracted
-//   return destinationId;
+  //   console.log(response);
+  //   var result = JSON.parse(response);
+  //   var destinationId = result[0].destinationId;
+  //   console.log(destinationId);
+  //   // get destinationId extracted
+  //   return destinationId;
 }
 
 function handleCityChange(event) {
-    event.preventDefault()
-    console.log(event.target)
+  event.preventDefault();
+  console.log(event.target);
 
-    if (event.target.textContent){
-        event.target.value = event.target.textContent
-        const options = getDestinationId(event.target.value)
-        console.log(event.target.value)
-        console.table(options)
-        return options ? options: null
-
-    }
+  if (event.target.textContent) {
+    event.target.value = event.target.textContent;
+    const options = getDestinationId(event.target.value);
+    console.log(event.target.value);
+    console.table(options);
+    return options ? options : null;
+  }
 }
 
-const cityInput = document.querySelector(".input")
+const cityInput = document.querySelector(".input");
 
 function handleSubmitSearch(event) {
-
-    event.preventDefault()
-    const {children}=event.target
-    console.log(children)
-    if (cityInput.textContent){
-console.log(cityInput.textContent)
-cityInput.value=cityInput.textContent
-getDestinationId(cityInput.value)
-        // children.forEach((child, index) => {
-        //     console.log(child)
-        // })
-    }
-
+  event.preventDefault();
+  const { children } = event.target;
+  console.log(children);
+  if (cityInput.textContent) {
+    console.log(cityInput.textContent);
+    cityInput.value = cityInput.textContent;
+    getDestinationId(cityInput.value);
+    // children.forEach((child, index) => {
+    //     console.log(child)
+    // })
   }
-// 
-
+}
+//
 
 getDestinationId("test");
 
