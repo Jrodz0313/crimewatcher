@@ -5,11 +5,11 @@ function displayListing (listing) {
   // Main listing container
   var listingBlock = document.createElement('div');
       listingBlock.setAttribute('class', 'block has-background-light rounded p-2');
+
+  var listingColumns = document.createElement('div');
+      listingColumns.setAttribute('class', 'columns');
   
     // Left side / image
-    var leftColumn = document.createElement('div');
-        leftColumn.setAttribute('class', 'columns');
-
     var listingImageContainer = document.createElement('div');
         listingImageContainer.setAttribute('class', 'column is-one-third-tablet');
     
@@ -19,20 +19,68 @@ function displayListing (listing) {
     var listingImage = document.createElement('img');
         listingImage.setAttribute('src', listing.max_photo_url);
         listingImage.setAttribute('alt', 'Hotel picture');
-        listingImage.setAttribute('class', 'listing-link');
+        // listingImage.setAttribute('class', 'listing-link');
 
         // Append listing block elements
         listingImageFigure.appendChild(listingImage);
         listingImageContainer.appendChild(listingImageFigure);
-        leftColumn.appendChild(listingImageContainer);
-        listingBlock.appendChild(leftColumn);
+        listingColumns.appendChild(listingImageContainer);
+        listingBlock.appendChild(listingColumns);
+
+
+
+
+
+    
+    // Right side / content
+    var listingContentContainer = document.createElement('div');
+        listingContentContainer.setAttribute('class', 'column is-three-quarter-desktop is-two-third-tablet');
+
+
+
+      // Level one left side
+      var levelOne = document.createElement('div');
+          levelOne.setAttribute('class', 'level is-mobile mb-0');
+      
+      var levelOneLeft = document.createElement('div');
+          levelOneLeft.setAttribute('class', 'level-left');
+      
+      var levelOneLeftItemOne = document.createElement('div');
+          levelOneLeftItemOne.setAttribute('class', 'level-item');
+
+      var listingName = document.createElement('a');
+          listingName.setAttribute('class', 'is-size-6-mobile is-size-6-tablet is-size-6-desktop has-text-weight-bold');
+          listingName.setAttribute('href', listing.url);
+          listingName.setAttribute('target', '_blank');
+
+          listingName.innerHTML = listing.hotel_name;
+
+          // Append level one left side elements
+          levelOneLeftItemOne.appendChild(listingName);
+          levelOneLeft.appendChild(levelOneLeftItemOne);
+          levelOne.appendChild(levelOneLeft);
+          listingContentContainer.appendChild(levelOne);
+          listingColumns.appendChild(listingContentContainer);
+        
+      // Level one right side
+      var levelOneRight = document.createElement('div');
+          levelOneRight.setAttribute('class', 'level-right');
+
+      var levelOneRightItemOne = document.createElement('div');
+          levelOneRightItemOne.setAttribute('class', 'level-item p-2 has-background-warning rounded');
+
+          levelOneRightItemOne.innerHTML = listing.review_score;
+
+          // Append level one right side elements
+          levelOneRight.appendChild(levelOneRightItemOne);
+          levelOne.appendChild(levelOneRight);
+
+
+
+
+
+
 
         // Append main listing section
         pageListings.appendChild(listingBlock);
-
-
-    // Right side / content
-    
-
-
 }
