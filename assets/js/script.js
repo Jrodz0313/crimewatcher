@@ -87,7 +87,6 @@ function getResultsByCoordinates(lat, long) {
             // Pass each listing to a function that will handle page formatting
             console.log(response)
             response.result.forEach(element => {
-                // displayResults(element);
                 displayListing(element);
             });
         })
