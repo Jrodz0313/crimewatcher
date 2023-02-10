@@ -87,11 +87,12 @@ function getResultsByCoordinates(lat, long) {
             // Pass each listing to a function that will handle page formatting
             console.log(response)
             response.result.forEach(element => {
-                displayResults(element);
+                displayListing(element);
             });
         })
         .catch(err => console.error(err));
 }
+
 
 
 // Add each lisitng to page
@@ -103,7 +104,7 @@ function displayResults(listing) {
     var hotelAddress = listing.address;
     var hotelCity = listing.city;
     var hotelReviewScore = listing.review_score;
-    var hotelReviewWord = listing.review_word;
+    var hotelReviewWord = listing.review_score_word;
     var hotelBookLink = listing.url;
 
     // Listing DOM Elements
@@ -162,8 +163,7 @@ usZip.addEventListener("keypress", function (event) {
       )
         .then((response) => response.json())
         .then(function (data) {
-          console.log(data);
-
+          console.log(data);            
         });
       event.preventDefault();
     }
