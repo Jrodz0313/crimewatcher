@@ -26,10 +26,11 @@
         </div>
         <!-- Search by city and country -->
         <div class="block dark p-3 rounded">
+          <form id="search-city-country" onsubmit="handleSubmitSearch(event)">
           <div class="field">
             <label class="label">City</label>
             <div class="control">
-              <input class="input is-fullwidth" type="text" name='city' placeholder="e.g Barcelona">
+              <input class="input is-fullwidth" type="text" name='city' value placeholder="e.g Barcelona" onchange="handleCityChange(event)">
             </div>
           </div>
           <div class="field">
@@ -45,6 +46,7 @@
               <button class="button is-warning is-fullwidth">Submit</button>
             </div>                                    
           </div>
+          </form>
         </div>
         <!-- By ZIP Code -->
         <div class="block dark p-3 rounded">
