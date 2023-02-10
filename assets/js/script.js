@@ -163,8 +163,7 @@ usZip.addEventListener("keypress", function (event) {
       )
         .then((response) => response.json())
         .then(function (data) {
-          console.log(data);
-            getResultsByCoordinates(data.lat, data.lon)
+          console.log(data);            
         });
       event.preventDefault();
     }

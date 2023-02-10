@@ -230,14 +230,12 @@ function displayListing (listing) {
                 listingContentContainer.appendChild(levelFive);
 
 
-
-
-
-
-
-
       //* Append listing to section
       pageListings.appendChild(listingBlock);
 }
 
+
+function clearListings () {
+  pageListings.innerHTML = ""
+}
 
