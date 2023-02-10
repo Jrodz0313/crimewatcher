@@ -111,9 +111,12 @@ function displayResults(listing) {
     var listingObject = document.createElement('div');        
         listingObject.setAttribute('class', 'block has-background-dark');
         listingObject.innerHTML = hotelName;
+
+    var listingImage
     // Listing card
     // var listingCard = document.createElement('div')
     //     listingCard.setAttribute('class', 'card');
+
     // // Lisitng card image
     // var listingImage = document.createElement('div')
     //     listingImage.setAttribute('class', 'card-image');
@@ -169,24 +172,39 @@ usZip.addEventListener("keypress", function (event) {
     }
   });
 
+// Local Storage functionality
+const btnAdd = document.querySelector('#btnAdd');
+const btnRemove = document.querySelector('#btnRemove');
+const listbox = document.querySelector('#list');
+const listingsVisited = document.querySelector('#clicked');
 
-  
-/* <table class="table">
-    <thead>
-        <tr>
-            <th><abbr title="Image">Pos</abbr></th>
-            <th>Name</th>
-            <th><abbr title="Review Score">Review Score/10</abbr></th>
-            <th><abbr title="Average Price">Avg. Price per Night</abbr></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>1</th>
-            <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-            </td>
-            <td>3</td>
-            <td>4</td>
-        </tr>
-    </tbody>
-</table> */
+btnAdd.onclick = (e) => {
+  e.preventDefault();
+
+ 
+  // create a new option
+  const option = new Option(clicked.value, clicked.value);
+  // add it to the list
+  listbox.add(option, undefined);
+
+};
+
+// remove selected option
+btnRemove.onclick = (e) => {
+  e.preventDefault();
+
+  // save the selected options
+  let selected = [];
+
+  for (let i = 0; i < listbox.options.length; i++) {
+    selected[i] = listbox.options[i].selected;
+  }
+
+  // remove all selected option
+  let index = listbox.options.length;
+  while (index--) {
+    if (selected[index]) {
+      listbox.remove(index);
+    }
+  }
+};
