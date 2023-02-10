@@ -1,7 +1,7 @@
 var currentLong;
 var currentLat;
 
-
+var listingContainer = document.getElementById('page-listings')
 
 // const options = {
 // 	method: 'GET',
@@ -34,16 +34,15 @@ var currentLat;
 //         .then(response => response.json())
 //         .then(response => console.log(response))
 //         .catch(err => console.error(err));
-//         console.log(response)
+//         // console.log(response)
 //         var result = JSON.parse(response)
 //         var destinationId = result[0].destinationId
 //         console.log(destinationId)
 //         // get destinatioId extracted 
 //         return destinationId
-//       }
+//         }
     
     
-      
     
 //     getDestinationId("test")
     
@@ -94,18 +93,44 @@ function getResultsByCoordinates(lat, long) {
         .catch(err => console.error(err));
 }
 
-// // Add each lisitng to page
-// function displayResults(listing) {
+
+// Add each lisitng to page
+function displayResults(listing) {
     
-//     // Listing Card prototype
-//     var imageSource = listing.max_photo_url;
-//     var hotelName = listing.hotel_name;
-//     var hotelAddress = listing.address;
-//     var hotelCity = listing.city;
-//     var hotelReviewScore = listing.review_score;
-//     var hotelReviewWord = listing.review_word;
-//     var hotelBookLink = listing.url;
-// }
+    // Listing Card prototype
+    var imageSource = listing.max_photo_url;
+    var hotelName = listing.hotel_name;
+    var hotelAddress = listing.address;
+    var hotelCity = listing.city;
+    var hotelReviewScore = listing.review_score;
+    var hotelReviewWord = listing.review_word;
+    var hotelBookLink = listing.url;
+
+    // Listing DOM Elements
+    // Card container
+    var listingObject = document.createElement('div');        
+        listingObject.setAttribute('class', 'block has-background-dark');
+        listingObject.innerHTML = hotelName;
+    // Listing card
+    // var listingCard = document.createElement('div')
+    //     listingCard.setAttribute('class', 'card');
+    // // Lisitng card image
+    // var listingImage = document.createElement('div')
+    //     listingImage.setAttribute('class', 'card-image');
+    //     // Append image container to listing card
+    //     listingCard.appendChild(listingImage);
+
+    // // Listing Title
+    // var listingTitle = document.createElement
+        
+        
+        // Append listing card to HTML container
+        listingContainer.appendChild(listingObject);
+
+
+
+
+}
 
 button.addEventListener("click", () => {
     if (!currentLat || !currentLong) {

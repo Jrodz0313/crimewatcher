@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Properties</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+  <div class="container px-4 py-6">
+
+    <div class="wrapper columns">
+        <div class="column is-one-quarter-desktop is-one-third-tablet has-background-light">
+        <!-- Title -->
+        <div class="block">
+          <h1 class="title">
+            Rental Properties
+          </h1>
+        </div> 
+        <div class="block">
+          <p class="subtitle mt-3" >
+            Website for <strong>travelers</strong>!
+          </p>
+        </div>
+        <!-- Search by city and country -->
+        <div class="block dark p-3 rounded">
+          <div class="field">
+            <label class="label">City</label>
+            <div class="control">
+              <input class="input is-fullwidth" type="text" name='city' placeholder="e.g Barcelona">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Country</label>
+            <div class="select is-fullwidth">
+              <select id="country-list">
+                <option selected disabled value="null">Select dropdown</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-warning is-fullwidth">Submit</button>
+            </div>                                    
+          </div>
+        </div>
+        <!-- By ZIP Code -->
+        <div class="block dark p-3 rounded">
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter Zip Code" id="zipCodeInput">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <a class="button is-warning is-fullwidth">
+                Search
+              </a>
+            </div>
+          </div>                                  
+          <p>&#42 US Only</p>
+        </div>
+
+        <!-- Near me button -->
+        <div class="block dark p-3 rounded">
+          <div class="field ml-1">
+            <button id="get-location" class="button is-warning is-fullwidth">View Properties Near Me</button> 
+          </div>
+        </div>
+      </div> <!-- left column end tag -->
+      <!-- Right column with page content -->
+      <div class="column is-three-quarter-desktop is-two-third-tablet" id="page-listings">
+        <div class="level">
+          <div class="level-item">
+            <div class="level-item has-background-light">Currency</div>
+          </div>          
+        </div>
+        <!-- Listings -->
+        <div class="block has-background-light rounded p-2">
+          <div class="columns">
+            <!-- Image -->
+            <div class="column is-one-third-tablet">
+              <figure class="image is-16by9">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/232833345.jpg?k=8535c8a172bb908da90edcc9485c64386fcae3007b4fb31c452a6e6e1e47c910&o=" 
+                  alt="Hotel picture" class="listing-link">
+              </figure>
+            </div>
+            <!-- Listing content -->
+            <div class="column">
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="listing-title level-left">
+                  <div class='level-item'>
+                    <a class="is-size-4-mobile is-size-6-tablet is-size-4-desktop has-text-weight-bold"
+                      href="http://www.google.com" target="_blank"  >
+                      Millennium Hilton New York One UN Plaza
+                    </a>
+                  </div>                  
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <div class="p-2 has-background-warning rounded">7.6</div>
+                  </div>
+                </div>
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p class="subtitle is-6">2055 Lincoln Highway,</p>
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <p class="">Good</p>
+                  </div>
+                </div>
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p class="subtitle is-6">Newark, NJ</p>
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <p class="">2,928 reviews</p>
+                  </div>
+                </div>
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p class="has-text-weight-bold">Amenities</p>
+                  </div>
+                </div>                
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="level-left">
+                  <p class="level-item">
+                    Swimming pool, breakfast
+                  </p>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">                    
+                    <p class="subtitle is-6 p-2 has-background-warning rounded has-text-weight-bold">$259 a night</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Listings -->
+        <div class="block has-background-light rounded p-2">
+          <div class="columns">
+            <!-- Image -->
+            <div class="column is-one-third-tablet">
+              <figure class="image is-16by9">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/90645358.jpg?k=2c861b0b4c772bf34572a7e9a34ce4113ffd1c899a4c2bda89dad2db56d5e2f8&o="
+                  alt="Hotel picture" class="listing-link">
+              </figure>
+            </div>
+            <!-- Listing content -->
+            <div class="column">
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="listing-title level-left">
+                  <div class='level-item'>
+                    <a class="is-size-4-mobile is-size-6-tablet is-size-6-desktop has-text-weight-bold"
+                      href="http://www.google.com" target="_blank"  >
+                      Holiday Inn Express Woodbridge, an IHG Hotel
+                    </a>
+                  </div>                  
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <div class="p-2 has-background-warning rounded">9.5</div>
+                  </div>
+                </div>
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p class="subtitle is-6">2055 Lincoln Highway,</p>
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <p class="">Very Good</p>
+                  </div>
+                </div>
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile ">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p class="subtitle is-6">Elizabeth, NJ</p>
+                  </div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <p class="">928 reviews</p>
+                  </div>
+                </div>
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p class="has-text-weight-bold">Amenities</p>
+                  </div>
+                </div>                
+              </div>
+              <!-- new level -->
+              <div class="level is-mobile mb-0">
+                <div class="level-left">
+                  <p class="level-item">
+                    Swimming pool, breakfast
+                  </p>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">                    
+                    <p class="subtitle is-6 p-2 has-background-warning rounded has-text-weight-bold">$259 a night</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="./assets/js/countries.js"></script>
+  <script src="./assets/js/elements.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
