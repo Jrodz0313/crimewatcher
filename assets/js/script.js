@@ -104,7 +104,7 @@ function displayResults(listing) {
     var hotelAddress = listing.address;
     var hotelCity = listing.city;
     var hotelReviewScore = listing.review_score;
-    var hotelReviewWord = listing.review_word;
+    var hotelReviewWord = listing.review_score_word;
     var hotelBookLink = listing.url;
 
     // Listing DOM Elements
@@ -164,7 +164,7 @@ usZip.addEventListener("keypress", function (event) {
         .then((response) => response.json())
         .then(function (data) {
           console.log(data);
-
+            getResultsByCoordinates(data.lat, data.lon)
         });
       event.preventDefault();
     }
