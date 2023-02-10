@@ -95,6 +95,7 @@ function getResultsByCoordinates(lat, long) {
 }
 
 
+
 // Add each lisitng to page
 function displayResults(listing) {
     
