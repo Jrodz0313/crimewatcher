@@ -1,151 +1,162 @@
+function getBookingData() {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "",
+      "X-RapidAPI-Host": "",
+    },
+  };
+
+  fetch(
+    "https://apidojo-booking-v1.p.rapidapi.com/currency/get-exchange-rates?base_currency=USD&languagecode=en-us",
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+}
+
+getBookingData();
+
 var currentLong;
 var currentLat;
 
-
-
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b',
-		'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
-	}
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b",
+    "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
+  },
 };
 
-fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
+function getDestinationId(location) {
+//   const locale = "en-us";
 
-    
-    function getDestinationId(location) {
-        const locale = "en-us"
-        
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': 'f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b',
-                'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
-            }
-        };
-        
-        var searchLocationsUrlString = "https://booking-com.p.rapidapi.com/v1/hotels/locations?locale=en-us&name=" + location
-        
-        fetch(searchLocationsUrlString, options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
-        console.log(response)
-        var result = JSON.parse(response)
-        var destinationId = result[0].destinationId
-        console.log(destinationId)
-        // get destinatioId extracted 
-        return destinationId
-      }
-    
-    
-      
-    
-    getDestinationId("test")
-    
-        fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
-    
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b",
+      "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
+    },
+  };
 
-    
+  var searchLocationsUrlString =
+    "https://booking-com.p.rapidapi.com/v1/hotels/locations?locale=" + "en-us" + "&name=" +
+    location;
 
+  fetch(searchLocationsUrlString, options)
+    .then((response) => response.json())
+    .then((response) => (response))
+    .catch((err) => console.error(err));
+  console.log(response);
+  var result = JSON.parse(response);
+  var destinationId = result[0].destinationId;
+  console.log(destinationId);
+  // get destinationId extracted
+  return destinationId;
+}
+
+function handleCityChange(event) {
+    event.preventDefault()
+    console.log(event.target)
+
+    if (event.target.textContent){
+        event.target.value = event.target.textContent
+        const options = getDestinationId(event.target.value)
+        console.log(event.target.value)
+        console.table(options)
+        return options ? options: null
+
+    }
+}
+
+const cityInput = document.querySelector(".input")
+
+function handleSubmitSearch(event) {
+
+    event.preventDefault()
+    const {children}=event.target
+    console.log(children)
+    if (cityInput.textContent){
+    console.log(cityInput.textContent)
+    cityInput.value=cityInput.textContent
+    getDestinationId(cityInput.value)
+        // children.forEach((child, index) => {
+        //     console.log(child)
+        // })
+    }
+
+  }
+// 
+
+
+getDestinationId("test");
+
+fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/countries", options)
+  .then((response) => response.json())
+  .then((response) => console.log(response))
+  .catch((err) => console.error(err));
 
 let button = document.getElementById("get-location");
 
-// Get current location 
+// Get current location
 function getLocation() {
-
-    navigator.geolocation.getCurrentPosition((position) => {
+  navigator.geolocation.getCurrentPosition((position) => {
     currentLat = position.coords.latitude;
-    console.log("🚀 ~ file: script.js:6 ~ navigator.geolocation.getCurrentPosition ~ lat", currentLat)
-    currentLong = position.coords.longitude;        
-    console.log("🚀 ~ file: script.js:8 ~ navigator.geolocation.getCurrentPosition ~ long", currentLong)
-    });
-}
-
-
-// Get location id to pass to booking API to get list of preperties in the area
-function getResultsByCoordinates(lat, long) {
-    
-    // API call using coordinates
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'fe32bd232cmsh314f416fc05e978p120522jsn3a47d3a556d5',
-            'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
-        }
-    };
-    
-    fetch('https://booking-com.p.rapidapi.com/v1/hotels/search-by-coordinates?longitude=' + long + '&filter_by_currency=AED&room_number=1&locale=en-gb&latitude=' + lat + '&order_by=popularity&units=metric&checkin_date=2023-07-15&adults_number=2&checkout_date=2023-07-16&page_number=0&categories_filter_ids=class%3A%3A2%2Cclass%3A%3A4%2Cfree_cancellation%3A%3A1&children_number=2&include_adjacency=true&children_ages=5%2C0', options)
-        .then(response => response.json())
-        .then(response => {
-            // Pass each listing to a function that will handle page formatting
-            console.log(response)
-            response.result.forEach(element => {
-                displayResults(element);
-            });
-        })
-        .catch(err => console.error(err));
-}
-
-// Add each lisitng to page
-function displayResults(listing) {
-    
-    // Listing Card prototype
-    var imageSource = listing.max_photo_url;
-    var hotelName = listing.hotel_name;
-    var hotelAddress = listing.address;
-    var hotelCity = listing.city;
-    var hotelReviewScore = listing.review_score;
-    var hotelReviewWord = listing.review_word;
-    var hotelBookLink = listing.url;
+    // console.log("🚀 ~ file: script.js:6 ~ navigator.geolocation.getCurrentPosition ~ lat", lat)
+    currentLong = position.coords.longitude;
+    // console.log("🚀 ~ file: script.js:8 ~ navigator.geolocation.getCurrentPosition ~ long", long)
+  });
 }
 
 button.addEventListener("click", () => {
-    
-    // if (!currentLat || !currentLong) {
-    //     getLocation();    
-    // }
-    getResultsByCoordinates(currentLat, currentLong)
-    
+  var apiUrl =
+    "http://api.openweathermap.org/geo/1.0/reverse?lat=" +
+    currentLat +
+    "&lon=" +
+    currentLong +
+    "&appid=e97ee8621afbdf55e3cfc6d7bc09d848";
+
+  getElementById();
+
+  fetch(apiUrl)
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
 });
-
-
 
 // Get user's location after page loads
 getLocation();
-
 
 // ___________________________________________
 
 var usZip = document.getElementById("zipCodeInput");
 
 usZip.addEventListener("keypress", function (event) {
-    // If the user presses the "Enter" key on the keyboard
-    var search = document.getElementById("zipCodeInput").value;
-    if (event.key === "Enter") {
-      console.log(search);
-      
-      fetch(
-       "http://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
-      )
-        .then((response) => response.json())
-        .then(function (data) {
-          console.log(data);
-  
-        });
-      event.preventDefault();
-    }
-  });
+  // If the user presses the "Enter" key on the keyboard
+  var search = document.getElementById("zipCodeInput").value;
+  if (event.key === "Enter") {
+    console.log(search);
 
-  
-{/* <table class="table">
+    fetch(
+      "http://api.openweathermap.org/geo/1.0/zip?zip=" +
+        search +
+        ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
+    )
+      .then((response) => response.json())
+      .then(function (data) {
+        console.log(data);
+      });
+    event.preventDefault();
+  }
+});
+
+{
+  /* <table class="table">
     <thead>
         <tr>
             <th><abbr title="Image">Pos</abbr></th>
@@ -163,4 +174,5 @@ usZip.addEventListener("keypress", function (event) {
             <td>4</td>
         </tr>
     </tbody>
-</table> */}
+</table> */
+}
