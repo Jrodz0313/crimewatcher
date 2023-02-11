@@ -30,7 +30,7 @@ const options = {
 };
 
 function getDestinationId(location) {
-  //   const locale = "en-us";
+//   const locale = "en-us";
 
   const options = {
     method: "GET",
