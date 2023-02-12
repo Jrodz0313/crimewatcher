@@ -174,38 +174,64 @@ usZip.addEventListener("keypress", function (event) {
   });
 
 // Local Storage functionality
-const btnAdd = document.querySelector('#btnAdd');
-const btnRemove = document.querySelector('#btnRemove');
-const listbox = document.querySelector('#list');
-const listingsVisited = document.querySelector('#clicked');
+// const visited = document.querySelector('.listingLink');
+// const btnRemove = document.querySelector('#btnRemove');
+// const listbox = document.querySelector('#list');
 
-btnAdd.onclick = (e) => {
-  e.preventDefault();
+// visited.onclick = (e) => {
+//   e.preventDefault();
 
- 
-  // create a new option
-  const option = new Option(clicked.value, clicked.value);
-  // add it to the list
-  listbox.add(option, undefined);
+//   // create a new option
+//   const option = new Option(visited, visited);
+//   // add it to the list
+//   listbox.add(option, undefined);
 
-};
+// };
 
-// remove selected option
-btnRemove.onclick = (e) => {
-  e.preventDefault();
+// // remove selected option
+// btnRemove.onclick = (e) => {
+//   e.preventDefault();
 
-  // save the selected options
-  let selected = [];
+//   // save the selected options
+//   let selected = [];
 
-  for (let i = 0; i < listbox.options.length; i++) {
-    selected[i] = listbox.options[i].selected;
-  }
+//   for (let i = 0; i < listbox.options.length; i++) {
+//     selected[i] = listbox.options[i].selected;
+//   }
 
-  // remove all selected option
-  let index = listbox.options.length;
-  while (index--) {
-    if (selected[index]) {
-      listbox.remove(index);
-    }
-  }
-};
+//   // remove all selected option
+//   let index = listbox.options.length;
+//   while (index--) {
+//     if (selected[index]) {
+//       listbox.remove(index);
+//     }
+//   }
+// };
+
+// Variation 1
+// function myFunction(event) { 
+//   let text = event.target.tagName;
+//   document.getElementById("demo").innerHTML = text;
+// }
+
+// Variation 2
+// function myFunction(event) { 
+//   let text = event.target.hasAttribute('href');
+//   document.getElementById("demo").innerHTML = text;
+// }
+
+var listingName = document.createElement('a');
+listingName.setAttribute('class', 'listingLink');
+listingName.setAttribute('href', result.data[i].url);
+listingName.setAttribute('target', '_blank');
+listingName.innerHTML = result.data[i].hotel_name;
+
+function myFunction(event) { 
+  let text = event.target.hasAttribute('href');
+
+  if (text=== true) {
+    document.getElementById("demo").innerHTML = listingName;
+  } else {
+  document.getElementById("demo").innerHTML = "";
+}
+}

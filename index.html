@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rental Properties</title>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Properties</title>
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
+
 <body>
   <div class="container px-4 py-6">
 
     <div class="wrapper columns">
-        <div class="column is-one-quarter-desktop is-one-third-tablet has-background-light">
+      <div class="column is-one-quarter-desktop is-one-third-tablet has-background-light">
         <!-- Title -->
         <div class="block">
           <h1 class="title">
             Rental Properties
           </h1>
-        </div> 
+        </div>
         <div class="block">
-          <p class="subtitle mt-3" >
+          <p class="subtitle mt-3">
             Website for <strong>travelers</strong>!
           </p>
         </div>
@@ -43,7 +45,7 @@
           <div class="field">
             <div class="control">
               <button class="button is-warning is-fullwidth">Submit</button>
-            </div>                                    
+            </div>
           </div>
         </div>
         <!-- By ZIP Code -->
@@ -59,23 +61,41 @@
                 Search
               </a>
             </div>
-          </div>                                  
+          </div>
           <p>&#42 US Only</p>
         </div>
 
         <!-- Near me button -->
         <div class="block dark p-3 rounded">
           <div class="field ml-1">
-            <button id="get-location" class="button is-warning is-fullwidth">View Properties Near Me</button> 
+            <button id="get-location" class="button is-warning is-fullwidth">View Properties Near Me</button>
           </div>
         </div>
+
+        <!-- Visited -->
+        <!-- <div class="block dark p-3 rounded">
+          <div id="container">
+            <form>
+              <label for="list">Visited Listings:</label>
+              <select id="listList" name="list" multiple>
+
+              </select>
+              <button id="btnRemove">Remove Selected Hotel</button>
+            </form>
+          </div>
+        </div> -->
+
+        <div>
+          <p id="demo"></p>
+        </div>
+
       </div> <!-- column end tag -->
 
-      <div class="column is-three-quarter-desktop is-two-third-tablet" id="page-listings">
+      <div onclick="myFunction(event)" style="border:1px solid black;padding:8px" class="column is-three-quarter-desktop is-two-third-tablet" id="page-listings">
         <div class="level">
           <div class="level-item">
             <div class="level-item has-background-light">Currency</div>
-          </div>          
+          </div>
         </div>
       </div>
 
@@ -90,4 +110,5 @@
   <script src="./assets/js/elements.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
