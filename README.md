@@ -8,7 +8,7 @@ General description of project
 
 
 
-Application works with following APIs
+##### Application works with following APIs
 
 - Booking API - [https://rapidapi.com/tipsters/api/booking-com](https://rapidapi.com/tipsters/api/booking-com)
 
@@ -22,7 +22,7 @@ Application works with following APIs
 
 Travel buddy app runs in browser and feature dynamically updated HTML and CSS.
 
-Frameworks: [Bulma (CSS)](https://bulma.io/)
+##### Frameworks: [Bulma (CSS)](https://bulma.io/)
 
 
 ## Table of Contents 
