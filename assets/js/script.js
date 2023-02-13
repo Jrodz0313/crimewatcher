@@ -220,18 +220,61 @@ usZip.addEventListener("keypress", function (event) {
 //   document.getElementById("demo").innerHTML = text;
 // }
 
-var listingName = document.createElement('a');
-listingName.setAttribute('class', 'listingLink');
-listingName.setAttribute('href', result.data[i].url);
-listingName.setAttribute('target', '_blank');
-listingName.innerHTML = result.data[i].hotel_name;
 
-function myFunction(event) { 
-  let text = event.target.hasAttribute('href');
+// function myFunction(event) { 
+//   let text = event.target.hasAttribute('href');
 
-  if (text=== true) {
-    document.getElementById("demo").innerHTML = listingName;
-  } else {
-  document.getElementById("demo").innerHTML = "";
+//   if (text=== true) {
+//     document.getElementById("demo").innerHTML = listingName;
+//   } else {
+//   document.getElementById("demo").innerHTML = "";
+// }
+// }
+
+// function myFunction(event) { 
+//     let text = event.target.textContent;
+//     document.getElementById("demo").innerHTML = text;
+// }
+
+// function myFunction(event) { 
+//   let text = event.target.hasAttribute('href').textContent;
+//   document.getElementById("demo").innerHTML = text;
+// }
+
+function myFunction(event){
+  // if (!event.target.closest('.listingLink')) return;
+  // console.log(event);
+  // console.log(event.srcElement.innerHTML);
+  // console.log(event.srcElement.href);
+
+  // let text = event.target.closest('.listingLink');
+  // console.log(text);
+  // console.log(text.textContent);
+  // console.log(text.href);
+
+  // document.getElementById("demo").innerHTML = text.textContent;
+  // document.getElementById("demo").innerHTML = text.href;
+
+  var viewedList = document.getElementById('demo');
+
+  var textName = event.target.closest('.listingLink').textContent;
+
+  // var textURL = event.target.closest('.listingLink').href;
+
+  // textName.setAttribute('href', textURL);
+
+  // textName.setAttribute('href', event.target.getAttribute('href'));
+  
+  // textName.appendChild(textURL);
+
+  var li = document.createElement('li');
+  li.setAttribute('href', event.target.closest('.listingLink').href);
+  li.setAttribute('id', 'viewedID');
+  li.textContent = textName;
+  viewedList.appendChild(li);
+
 }
-}
+
+
+
+
