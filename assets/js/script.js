@@ -80,7 +80,7 @@ function getResultsByCoordinates(lat, long) {
             'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
     };
-    
+
     fetch('https://booking-com.p.rapidapi.com/v1/hotels/search-by-coordinates?longitude=' + long + '&filter_by_currency=AED&room_number=1&locale=en-gb&latitude=' + lat + '&order_by=popularity&units=metric&checkin_date=2023-07-15&adults_number=2&checkout_date=2023-07-16&page_number=0&categories_filter_ids=class%3A%3A2%2Cclass%3A%3A4%2Cfree_cancellation%3A%3A1&children_number=2&include_adjacency=true&children_ages=5%2C0', options)
         .then(response => response.json())
         .then(response => {
