@@ -207,73 +207,54 @@ usZip.addEventListener("keypress", function (event) {
 //     }
 //   }
 // };
-
-// Variation 1
-// function myFunction(event) { 
-//   let text = event.target.tagName;
-//   document.getElementById("demo").innerHTML = text;
-// }
-
-// Variation 2
-// function myFunction(event) { 
-//   let text = event.target.hasAttribute('href');
-//   document.getElementById("demo").innerHTML = text;
-// }
-
-
-// function myFunction(event) { 
-//   let text = event.target.hasAttribute('href');
-
-//   if (text=== true) {
-//     document.getElementById("demo").innerHTML = listingName;
-//   } else {
-//   document.getElementById("demo").innerHTML = "";
-// }
-// }
-
-// function myFunction(event) { 
-//     let text = event.target.textContent;
-//     document.getElementById("demo").innerHTML = text;
-// }
-
-// function myFunction(event) { 
-//   let text = event.target.hasAttribute('href').textContent;
-//   document.getElementById("demo").innerHTML = text;
-// }
+var searchHistory = JSON.parse(localStorage.getItem('locStor')) || []
+console.log(searchHistory);
 
 function myFunction(event){
-  // if (!event.target.closest('.listingLink')) return;
-  // console.log(event);
-  // console.log(event.srcElement.innerHTML);
-  // console.log(event.srcElement.href);
-
-  // let text = event.target.closest('.listingLink');
-  // console.log(text);
-  // console.log(text.textContent);
-  // console.log(text.href);
-
-  // document.getElementById("demo").innerHTML = text.textContent;
-  // document.getElementById("demo").innerHTML = text.href;
-
+ 
   var viewedList = document.getElementById('demo');
 
   var textName = event.target.closest('.listingLink').textContent;
 
-  // var textURL = event.target.closest('.listingLink').href;
-
-  // textName.setAttribute('href', textURL);
-
-  // textName.setAttribute('href', event.target.getAttribute('href'));
-  
-  // textName.appendChild(textURL);
-
   var li = document.createElement('li');
-  li.setAttribute('href', event.target.closest('.listingLink').href);
-  li.setAttribute('id', 'viewedID');
-  li.textContent = textName;
+
+  var listName = document.createElement('a');
+  console.log(searchHistory);
+  searchHistory.push(textName);
+  localStorage.setItem('locStor', JSON.stringify(searchHistory));
+  listName.setAttribute('href', event.target.closest('.listingLink').href);
+  listName.setAttribute('target', '_blank');
+  listName.innerHTML = textName;
+  
+  li.appendChild(listName);
   viewedList.appendChild(li);
 
 }
+
+
+function init() {
+  for (var i = 0; i < searchHistory.length; i++) {
+    var listName = document.createElement('a');
+    var li = document.createElement('li');
+    listName.innerHTML = searchHistory[i];
+    listName.setAttribute('href', ('.listingLink').href);
+    li.appendChild(listName);
+    var viewedList = document.getElementById('demo').append(li);
+  }
+  // // If todos were retrieved from localStorage, update the todos array to it
+  // if (storedTodos !== null) {
+  //   li = storedTodos;
+  // }
+}
+
+function storeTodos() {
+  // Stringify and set key in localStorage to todos array
+  localStorage.setItem("li", JSON.stringify(li));
+}
+
+
+init()
+
 
 
 
