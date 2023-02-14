@@ -58,13 +58,16 @@ var listingContainer = document.getElementById('page-listings')
 let button = document.getElementById("get-location");
 
 // Get current location 
-function getLocation() {
+function getLocation(runGetResults=false) {
 
     navigator.geolocation.getCurrentPosition((position) => {
     currentLat = position.coords.latitude;
     console.log("🚀 ~ file: script.js:6 ~ navigator.geolocation.getCurrentPosition ~ lat", currentLat)
     currentLong = position.coords.longitude;        
     console.log("🚀 ~ file: script.js:8 ~ navigator.geolocation.getCurrentPosition ~ long", currentLong)
+    if (runGetResults) {
+      getResultsByCoordinates(currentLat, currentLong);
+    }    
     });
 }
 
@@ -98,9 +101,12 @@ function getResultsByCoordinates(lat, long) {
 
 button.addEventListener("click", () => {
     
-    getResultsByCoordinates(currentLat, currentLong)
-    
-});
+    if (!currentLat || !currentLong) {
+        getLocation(true);
+    } else {
+        getResultsByCoordinates(currentLat, currentLong)
+    }
+  });
 
 
 
