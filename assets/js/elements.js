@@ -239,3 +239,6 @@ function clearListings () {
   pageListings.innerHTML = ""
 }
 
+
+var historyContainer = document.getElementById("SearchHistoryContainer2");
+console.log("🚀 ~ file: elements.js:244 ~ historyContainer", historyContainer)

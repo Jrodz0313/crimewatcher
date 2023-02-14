@@ -66,6 +66,7 @@ function getLocation() {
     currentLong = position.coords.longitude;        
     console.log("🚀 ~ file: script.js:8 ~ navigator.geolocation.getCurrentPosition ~ long", currentLong)
     });
+    
 }
 
 
@@ -86,6 +87,7 @@ function getResultsByCoordinates(lat, long) {
         .then(response => {
             // Pass each listing to a function that will handle page formatting
             console.log(response)
+            clearListings();
             response.result.forEach(element => {
                 displayListing(element);
             });
@@ -94,58 +96,17 @@ function getResultsByCoordinates(lat, long) {
 }
 
 
-
-// Add each lisitng to page
-function displayResults(listing) {
+button.addEventListener("click", function () {
     
-    // Listing Card prototype
-    var imageSource = listing.max_photo_url;
-    var hotelName = listing.hotel_name;
-    var hotelAddress = listing.address;
-    var hotelCity = listing.city;
-    var hotelReviewScore = listing.review_score;
-    var hotelReviewWord = listing.review_score_word;
-    var hotelBookLink = listing.url;
-
-    // Listing DOM Elements
-    // Card container
-    var listingObject = document.createElement('div');        
-        listingObject.setAttribute('class', 'block has-background-dark');
-        listingObject.innerHTML = hotelName;
-    // Listing card
-    // var listingCard = document.createElement('div')
-    //     listingCard.setAttribute('class', 'card');
-    // // Lisitng card image
-    // var listingImage = document.createElement('div')
-    //     listingImage.setAttribute('class', 'card-image');
-    //     // Append image container to listing card
-    //     listingCard.appendChild(listingImage);
-
-    // // Listing Title
-    // var listingTitle = document.createElement
-        
-        
-        // Append listing card to HTML container
-        listingContainer.appendChild(listingObject);
-
-
-
-
-}
-
-button.addEventListener("click", () => {
-    
-    // if (!currentLat || !currentLong) {
-    //     getLocation();    
-    // }
-    getResultsByCoordinates(currentLat, currentLong)
+    getLocation()
+    setTimeout(getResultsByCoordinates(currentLat, currentLong), 2000);
     
 });
 
 
 
 // Get user's location after page loads
-getLocation();
+// getLocation();
 
 
 // ___________________________________________
