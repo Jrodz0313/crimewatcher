@@ -58,13 +58,16 @@ var listingContainer = document.getElementById('page-listings')
 let button = document.getElementById("get-location");
 
 // Get current location 
-function getLocation() {
+function getLocation(runGetResults=false) {
 
     navigator.geolocation.getCurrentPosition((position) => {
     currentLat = position.coords.latitude;
     console.log("🚀 ~ file: script.js:6 ~ navigator.geolocation.getCurrentPosition ~ lat", currentLat)
     currentLong = position.coords.longitude;        
     console.log("🚀 ~ file: script.js:8 ~ navigator.geolocation.getCurrentPosition ~ long", currentLong)
+    if (runGetResults) {
+      getResultsByCoordinates(currentLat, currentLong);
+    }    
     });
 }
 
@@ -97,12 +100,13 @@ function getResultsByCoordinates(lat, long) {
 
 
 button.addEventListener("click", () => {
-    if (!currentLat || !currentLong) {
-        myFunction();    
-    }
-    getResultsByCoordinates(currentLat, currentLong)
     
-});
+    if (!currentLat || !currentLong) {
+        getLocation(true);
+    } else {
+        getResultsByCoordinates(currentLat, currentLong)
+    }
+  });
 
 
 
@@ -130,7 +134,7 @@ usZip.addEventListener("keypress", getCoordinatesByZip)
     if (event.key === "Enter" || event.type === "click") {
 
       fetch(
-       "http://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
+       "https://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
       )
         .then((response) => response.json())
         .then(function (data) {
