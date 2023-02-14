@@ -130,7 +130,7 @@ usZip.addEventListener("keypress", getCoordinatesByZip)
     if (event.key === "Enter" || event.type === "click") {
 
       fetch(
-       "http://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
+       "https://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
       )
         .then((response) => response.json())
         .then(function (data) {
