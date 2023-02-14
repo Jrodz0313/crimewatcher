@@ -97,9 +97,7 @@ function getResultsByCoordinates(lat, long) {
 
 
 button.addEventListener("click", () => {
-    if (!currentLat || !currentLong) {
-        myFunction();    
-    }
+    
     getResultsByCoordinates(currentLat, currentLong)
     
 });
