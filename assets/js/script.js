@@ -199,7 +199,7 @@ function myFunction(event){
     link: textLink,
   }
 
-  var li = document.createElement('li');
+  var ul = document.createElement('ul');
 
   var listName = document.createElement('a');
   console.log(searchHistory);
@@ -211,8 +211,8 @@ function myFunction(event){
   listName.setAttribute('target', '_blank');
   listName.innerHTML = textName;
   
-  li.appendChild(listName);
-  viewedList.appendChild(li);
+  ul.appendChild(listName);
+  viewedList.appendChild(ul);
 
 }
 
@@ -220,12 +220,12 @@ function myFunction(event){
 function init() {
   for (var i = 0; i < searchHistory.length; i++) {
     var listName = document.createElement('a');
-    var li = document.createElement('li');
+    var ul = document.createElement('ul');
     listName.innerHTML = searchHistory[i].name;
     // listName.setAttribute('href', 'https://www.booking.com');
     listName.setAttribute('href', searchHistory[i].link);
-    li.appendChild(listName);
-    var viewedList = document.getElementById('demo').append(li);
+    ul.appendChild(listName);
+    var viewedList = document.getElementById('demo').append(ul);
     if (i === 10) {
       return;
     };
