@@ -138,7 +138,7 @@ function displayResults(listing) {
 
 button.addEventListener("click", () => {
     if (!currentLat || !currentLong) {
-        getLocation();    
+        myFunction();    
     }
     getResultsByCoordinates(currentLat, currentLong)
     
@@ -150,16 +150,25 @@ button.addEventListener("click", () => {
 getLocation();
 
 
-// ___________________________________________
+// Zip Code Search below___________________________________________
 
+// By button...
+
+
+// By pressing enter...
 var usZip = document.getElementById("zipCodeInput");
 
-usZip.addEventListener("keypress", function (event) {
+var zipSearch = document.getElementById("zip-search");
+
+zipSearch.addEventListener("click", getCoordinatesByZip);
+
+usZip.addEventListener("keypress", getCoordinatesByZip) 
+  function getCoordinatesByZip (event) {
     // If the user presses the "Enter" key on the keyboard
+
     var search = document.getElementById("zipCodeInput").value;
-    if (event.key === "Enter") {
-      console.log(search);
-      
+    if (event.key === "Enter" || event.type === "click") {
+
       fetch(
        "http://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
       )
@@ -168,45 +177,12 @@ usZip.addEventListener("keypress", function (event) {
           console.log(data);
           console.log(data.lat);
           console.log(data.lon);
+          getResultsByCoordinates(data.lat, data.lon);
         });
-      event.preventDefault();
     }
-  });
+  };
 
 // Local Storage functionality
-// const visited = document.querySelector('.listingLink');
-// const btnRemove = document.querySelector('#btnRemove');
-// const listbox = document.querySelector('#list');
-
-// visited.onclick = (e) => {
-//   e.preventDefault();
-
-//   // create a new option
-//   const option = new Option(visited, visited);
-//   // add it to the list
-//   listbox.add(option, undefined);
-
-// };
-
-// // remove selected option
-// btnRemove.onclick = (e) => {
-//   e.preventDefault();
-
-//   // save the selected options
-//   let selected = [];
-
-//   for (let i = 0; i < listbox.options.length; i++) {
-//     selected[i] = listbox.options[i].selected;
-//   }
-
-//   // remove all selected option
-//   let index = listbox.options.length;
-//   while (index--) {
-//     if (selected[index]) {
-//       listbox.remove(index);
-//     }
-//   }
-// };
 var searchHistory = JSON.parse(localStorage.getItem('locStor')) || []
 console.log(searchHistory);
 
@@ -250,13 +226,12 @@ function init() {
     listName.setAttribute('href', searchHistory[i].link);
     li.appendChild(listName);
     var viewedList = document.getElementById('demo').append(li);
-  }
-}
+    if (i === 10) {
+      return;
+    };
+    };
+  };
 
-// function storeTodos() {
-//   // Stringify and set key in localStorage to todos array
-//   localStorage.setItem("li", JSON.stringify(li));
-// }
 
 
 init()
