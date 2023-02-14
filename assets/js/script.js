@@ -216,13 +216,22 @@ function myFunction(event){
 
   var textName = event.target.closest('.listingLink').textContent;
 
+  var textLink = event.target.closest('.listingLink').getAttribute('href');
+
+  var listObject = {
+    name: textName,
+    link: textLink,
+  }
+
   var li = document.createElement('li');
 
   var listName = document.createElement('a');
   console.log(searchHistory);
-  searchHistory.push(textName);
+  // searchHistory.push(textName);
+  searchHistory.push(listObject);
   localStorage.setItem('locStor', JSON.stringify(searchHistory));
-  listName.setAttribute('href', event.target.closest('.listingLink').href);
+  // listName.setAttribute('href', event.target.closest('.listingLink').href);
+  listName.setAttribute('href', textLink);
   listName.setAttribute('target', '_blank');
   listName.innerHTML = textName;
   
@@ -236,21 +245,18 @@ function init() {
   for (var i = 0; i < searchHistory.length; i++) {
     var listName = document.createElement('a');
     var li = document.createElement('li');
-    listName.innerHTML = searchHistory[i];
-    listName.setAttribute('href', ('.listingLink').href);
+    listName.innerHTML = searchHistory[i].name;
+    // listName.setAttribute('href', 'https://www.booking.com');
+    listName.setAttribute('href', searchHistory[i].link);
     li.appendChild(listName);
     var viewedList = document.getElementById('demo').append(li);
   }
-  // // If todos were retrieved from localStorage, update the todos array to it
-  // if (storedTodos !== null) {
-  //   li = storedTodos;
-  // }
 }
 
-function storeTodos() {
-  // Stringify and set key in localStorage to todos array
-  localStorage.setItem("li", JSON.stringify(li));
-}
+// function storeTodos() {
+//   // Stringify and set key in localStorage to todos array
+//   localStorage.setItem("li", JSON.stringify(li));
+// }
 
 
 init()
