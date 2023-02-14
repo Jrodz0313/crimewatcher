@@ -81,7 +81,7 @@ Here is our presentation:
 
 #### Christian Shelton
 
-[https://github.com/christianshelton1] (https://github.com/christianshelton1)
+[https://github.com/christianshelton1](https://github.com/christianshelton1)
 
 
 #### Mirek Nyzio
