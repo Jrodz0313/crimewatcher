@@ -1,6 +1,147 @@
 var currentLong;
 var currentLat;
 
+var tempResponseObject = [
+  {
+      "image_url": "https://cf.bstatic.com/xdata/images/city/150x150/887988.jpg?k=a2602813378d1b274f45b538edcdcef7931e6918e43dbfdc5c254c6f480c231b&o=",
+      "region": "New Jersey",
+      "cc1": "us",
+      "hotels": 2,
+      "city_name": "Trenton",
+      "rtl": 0,
+      "nr_hotels": 2,
+      "label": "Trenton, New Jersey, United States",
+      "lc": "en",
+      "name": "Trenton",
+      "longitude": -74.7433,
+      "dest_id": "20082688",
+      "b_max_los_data": {
+          "extended_los": 90,
+          "max_allowed_los": 90,
+          "is_fullon": 0,
+          "has_extended_los": 1,
+          "experiment": "long_stays_android_extend_los_2",
+          "default_los": 45
+      },
+      "timezone": "America/New_York",
+      "dest_type": "city",
+      "latitude": 40.2169,
+      "country": "United States",
+      "city_ufi": null,
+      "type": "ci"
+  },
+  {
+      "type": "ci",
+      "city_ufi": null,
+      "country": "United States",
+      "latitude": 44.4389,
+      "dest_type": "city",
+      "timezone": "America/New_York",
+      "b_max_los_data": {
+          "extended_los": 90,
+          "max_allowed_los": 90,
+          "default_los": 45,
+          "experiment": "long_stays_android_extend_los_2",
+          "has_extended_los": 1,
+          "is_fullon": 0
+      },
+      "dest_id": "20053268",
+      "longitude": -68.3706,
+      "name": "Trenton",
+      "lc": "en",
+      "nr_hotels": 23,
+      "label": "Trenton, Maine, United States",
+      "rtl": 0,
+      "city_name": "Trenton",
+      "image_url": "https://cf.bstatic.com/xdata/images/city/150x150/891987.jpg?k=b107e880e6f51b78cd205c4d43a5eef296541dc9afb3a93a22e2d0f3d5e44545&o=",
+      "region": "Maine",
+      "hotels": 23,
+      "cc1": "us"
+  },
+  {
+      "latitude": 44.10331,
+      "timezone": "America/Toronto",
+      "dest_type": "city",
+      "city_ufi": null,
+      "type": "ci",
+      "country": "Canada",
+      "dest_id": "-574958",
+      "longitude": -77.57589,
+      "b_max_los_data": {
+          "max_allowed_los": 90,
+          "extended_los": 90,
+          "has_extended_los": 1,
+          "experiment": "long_stays_android_extend_los_2",
+          "default_los": 45,
+          "is_fullon": 0
+      },
+      "lc": "en",
+      "name": "Trenton",
+      "hotels": 9,
+      "image_url": "https://cf.bstatic.com/xdata/images/city/150x150/944306.jpg?k=3aa03c71d08d325db23019bc550ad23d9a96578b580303674664bd7c4cd1100d&o=",
+      "region": "Ontario",
+      "cc1": "ca",
+      "rtl": 0,
+      "label": "Trenton, Ontario, Canada",
+      "nr_hotels": 9,
+      "city_name": "Trenton"
+  },
+  {
+      "dest_id": "20030213",
+      "longitude": -85.5092,
+      "b_max_los_data": {
+          "max_allowed_los": 90,
+          "extended_los": 90,
+          "has_extended_los": 1,
+          "experiment": "long_stays_android_extend_los_2",
+          "default_los": 45,
+          "is_fullon": 0
+      },
+      "latitude": 34.8719,
+      "dest_type": "city",
+      "timezone": "America/New_York",
+      "type": "ci",
+      "city_ufi": null,
+      "country": "United States",
+      "cc1": "us",
+      "region": "Georgia",
+      "hotels": 6,
+      "label": "Trenton, Georgia, United States",
+      "nr_hotels": 6,
+      "rtl": 0,
+      "city_name": "Trenton",
+      "lc": "en",
+      "name": "Trenton"
+  },
+  {
+      "name": "Trenton",
+      "lc": "en",
+      "rtl": 0,
+      "label": "Trenton, South Carolina, United States",
+      "nr_hotels": 2,
+      "city_name": "Trenton",
+      "region": "South Carolina",
+      "hotels": 2,
+      "cc1": "us",
+      "city_ufi": null,
+      "type": "ci",
+      "country": "United States",
+      "latitude": 33.7439,
+      "timezone": "America/New_York",
+      "dest_type": "city",
+      "b_max_los_data": {
+          "experiment": "long_stays_android_extend_los_2",
+          "has_extended_los": 1,
+          "default_los": 45,
+          "is_fullon": 0,
+          "extended_los": 90,
+          "max_allowed_los": 90
+      },
+      "dest_id": "20118950",
+      "longitude": -81.8408
+  }
+]
+
 function getDestinationId(location) {
   //   const locale = "en-us";
 
@@ -13,22 +154,27 @@ function getDestinationId(location) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b",
+      //"X-RapidAPI-Key": "f952658629msh7726f90b2b0366fp176658jsn9a988e1b126b",
+      "X-RapidAPI-Key": "fe32bd232cmsh314f416fc05e978p120522jsn3a47d3a556d5", // need new api key from jasiah
       "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
     },
   };
 
+  //getResultsByCoordinates(tempResponseObject[0].latitude,tempResponseObject[0].longitude)
+  //return
+
   fetch(searchLocationsUrlString, options)
     .then((response) => {
       console.log(response);
-      if (!respone.ok) {
+      if (!response.ok) {
         return null;
       }
       return response.json();
     })
     .then((data) => {
       console.log(data);
-      return data;
+      getResultsByCoordinates(data[0].latitude,data[0].longitude)
+      //return data;
     })
     .catch((err) => console.error(err));
 
@@ -66,10 +212,15 @@ const cityInput = document.querySelector(".input");
 function handleSubmitSearch(event) {
   event.preventDefault();
   const { children } = event.target;
-  console.log(children);
-  if (cityInput.textContent) {
-    console.log(cityInput.textContent);
-    cityInput.value = cityInput.textContent;
+  console.log(children); 
+  console.log(cityInput)
+  console.log(cityInput.textContent)
+  console.log(cityInput.value)
+  
+  
+  if (cityInput.value) {
+    console.log(cityInput.value);
+   // cityInput.value = cityInput.textContent;
     getDestinationId(cityInput.value);
     // children.forEach((child, index) => {
     //     console.log(child)
