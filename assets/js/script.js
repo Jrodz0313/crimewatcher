@@ -50,7 +50,7 @@ function getDestinationId(location) {
 
 function handleCityChange(event) {
   event.preventDefault();
-  console.log(event.target);
+  console.log(event);
 
   if (event.target.textContent) {
     event.target.value = event.target.textContent;
