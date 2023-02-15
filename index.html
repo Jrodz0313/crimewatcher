@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rental Properties</title>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-</head>
-<body>
-  <div class="container px-4 py-6">
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Properties</title>
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <div class="container is-fullhd px-4 py-6">
     <div class="wrapper columns">
-        <div class="column is-one-quarter-desktop is-one-third-tablet has-background-light">
+      <div class="column is-one-quarter-desktop is-one-third-tablet has-background-light">
         <!-- Title -->
         <div class="block">
           <h1 class="title">
             Rental Properties
           </h1>
-        </div> 
+        </div>
         <div class="block">
-          <p class="subtitle mt-3" >
+          <p class="subtitle mt-3">
             Website for <strong>travelers</strong>!
           </p>
         </div>
+        
         <!-- Search by city and country -->
         <div class="block dark p-3 rounded">
           <form id="search-city-country" onsubmit="handleSubmitSearch(event)">
@@ -44,10 +46,12 @@
           <div class="field">
             <div class="control">
               <button class="button is-warning is-fullwidth">Submit</button>
-            </div>                                    
+            </div>
           </div>
+
           </form>
         </div>
+
         <!-- By ZIP Code -->
         <div class="block dark p-3 rounded">
           <div class="field">
@@ -57,31 +61,159 @@
           </div>
           <div class="field">
             <div class="control">
-              <a class="button is-warning is-fullwidth">
-                Search
-              </a>
+              <button id="zip-search" class="button is-warning is-fullwidth">Search</button>
             </div>
-          </div>                                  
+          </div>
           <p>&#42 US Only</p>
         </div>
-
+        
         <!-- Near me button -->
         <div class="block dark p-3 rounded">
           <div class="field ml-1">
-            <button id="get-location" class="button is-warning is-fullwidth">View Properties Near Me</button> 
+            <button id="get-location" class="button is-warning is-fullwidth">View Properties Near Me</button>
           </div>
         </div>
-      </div> <!-- column end tag -->
 
-      <div class="column is-three-quarter-desktop is-two-third-tablet">
-        <div class="level">
-          <div class="level-item">
-            <div class="level-item has-background-light">Currency</div>
-          </div>          
+        <!--Currency-->
+        <div class="block dark p-3 rounded">
+          <div class="field">
+            <div class="control">
+              <div class="container">
+                <div class="currency">
+                  <select id="currency-one">
+                    <option value="AED">AED</option>
+                    <option value="ARS">ARS</option>
+                    <option value="AUD">AUD</option>
+                    <option value="BGN">BGN</option>
+                    <option value="BRL">BRL</option>
+                    <option value="BSD">BSD</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CLP">CLP</option>
+                    <option value="CNY">CNY</option>
+                    <option value="COP">COP</option>
+                    <option value="CZK">CZK</option>
+                    <option value="DKK">DKK</option>
+                    <option value="DOP">DOP</option>
+                    <option value="EGP">EGP</option>
+                    <option value="EUR">EUR</option>
+                    <option value="FJD">FJD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="GTQ">GTQ</option>
+                    <option value="HKD">HKD</option>
+                    <option value="HRK">HRK</option>
+                    <option value="HUF">HUF</option>
+                    <option value="IDR">IDR</option>
+                    <option value="ILS">ILS</option>
+                    <option value="INR">INR</option>
+                    <option value="ISK">ISK</option>
+                    <option value="JPY">JPY</option>
+                    <option value="KRW">KRW</option>
+                    <option value="KZT">KZT</option>
+                    <option value="MXN">MXN</option>
+                    <option value="MYR">MYR</option>
+                    <option value="NOK">NOK</option>
+                    <option value="NZD">NZD</option>
+                    <option value="PAB">PAB</option>
+                    <option value="PEN">PEN</option>
+                    <option value="PHP">PHP</option>
+                    <option value="PKR">PKR</option>
+                    <option value="PLN">PLN</option>
+                    <option value="PYG">PYG</option>
+                    <option value="RON">RON</option>
+                    <option value="RUB">RUB</option>
+                    <option value="SAR">SAR</option>
+                    <option value="SEK">SEK</option>
+                    <option value="SGD">SGD</option>
+                    <option value="THB">THB</option>
+                    <option value="TRY">TRY</option>
+                    <option value="TWD">TWD</option>
+                    <option value="UAH">UAH</option>
+                    <option value="USD" selected>USD</option>
+                    <option value="UYU">UYU</option>
+                    <option value="VND">VND</option>
+                    <option value="ZAR">ZAR</option>
+                  </select>
+                  <input type="number" id="amount-one" placeholder="0" value="1" />
+                </div>
+            
+                <div class="currency">
+                  <select id="currency-two">
+                    <option value="AED">AED</option>
+                    <option value="ARS">ARS</option>
+                    <option value="AUD">AUD</option>
+                    <option value="BGN">BGN</option>
+                    <option value="BRL">BRL</option>
+                    <option value="BSD">BSD</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CLP">CLP</option>
+                    <option value="CNY">CNY</option>
+                    <option value="COP">COP</option>
+                    <option value="CZK">CZK</option>
+                    <option value="DKK">DKK</option>
+                    <option value="DOP">DOP</option>
+                    <option value="EGP">EGP</option>
+                    <option value="EUR" selected>EUR</option>
+                    <option value="FJD">FJD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="GTQ">GTQ</option>
+                    <option value="HKD">HKD</option>
+                    <option value="HRK">HRK</option>
+                    <option value="HUF">HUF</option>
+                    <option value="IDR">IDR</option>
+                    <option value="ILS">ILS</option>
+                    <option value="INR">INR</option>
+                    <option value="ISK">ISK</option>
+                    <option value="JPY">JPY</option>
+                    <option value="KRW">KRW</option>
+                    <option value="KZT">KZT</option>
+                    <option value="MXN">MXN</option>
+                    <option value="MYR">MYR</option>
+                    <option value="NOK">NOK</option>
+                    <option value="NZD">NZD</option>
+                    <option value="PAB">PAB</option>
+                    <option value="PEN">PEN</option>
+                    <option value="PHP">PHP</option>
+                    <option value="PKR">PKR</option>
+                    <option value="PLN">PLN</option>
+                    <option value="PYG">PYG</option>
+                    <option value="RON">RON</option>
+                    <option value="RUB">RUB</option>
+                    <option value="SAR">SAR</option>
+                    <option value="SEK">SEK</option>
+                    <option value="SGD">SGD</option>
+                    <option value="THB">THB</option>
+                    <option value="TRY">TRY</option>
+                    <option value="TWD">TWD</option>
+                    <option value="UAH">UAH</option>
+                    <option value="USD">USD</option>
+                    <option value="UYU">UYU</option>
+                    <option value="VND">VND</option>
+                    <option value="ZAR">ZAR</option>
+                  </select>
+                  <input type="number" id="amount-two" placeholder="0" />
+                  <div class="swap-rate-container">
+                    <button class="btn" id="swap">Convert</button>
+                    <div class="rate" id="rate"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- Visited -->
+        <div class="block dark p-3 rounded">
+          <div class="field">
+            <label class="label">Most Recent Searches</label>
+            <p id="demo"></p>
+          </div>
+        </div>
+      </div> <!-- column end tag -->      
+
+      <div onclick="myFunction(event)" class="column is-three-quarter-desktop is-two-third-tablet" id="page-listings">
+        
       </div>
-
-
     </div>
   </div>
 
@@ -89,6 +221,10 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="./assets/js/countries.js"></script>
+  <script src="./assets/js/elements.js"></script>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/script1.js"></script>
+  <script src="./assets/js/approximatelocation.js"></script>
 </body>
+
 </html>
