@@ -16,10 +16,10 @@ var listingContainer = document.getElementById('page-listings')
 // 	.then(response => console.log(response))
 // 	.catch(err => console.error(err));
 
-    
+
 //     function getDestinationId(location) {
 //         const locale = "en-us"
-        
+
 //         const options = {
 //             method: 'GET',
 //             headers: {
@@ -27,9 +27,9 @@ var listingContainer = document.getElementById('page-listings')
 //                 'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
 //             }
 //         };
-        
+
 //         var searchLocationsUrlString = "https://booking-com.p.rapidapi.com/v1/hotels/locations?locale=en-us&name=" + location
-        
+
 //         fetch(searchLocationsUrlString, options)
 //         .then(response => response.json())
 //         .then(response => console.log(response))
@@ -41,72 +41,76 @@ var listingContainer = document.getElementById('page-listings')
 //         // get destinatioId extracted 
 //         return destinationId
 //         }
-    
-    
-    
+
+
+
 //     getDestinationId("test")
-    
+
 //         fetch('https://wft-geo-db.p.rapidapi.com/v1/geo/countries', options)
 //         .then(response => response.json())
 //         .then(response => console.log(response))
 //         .catch(err => console.error(err));
-    
 
-    
+
+
 
 
 let button = document.getElementById("get-location");
 
 // Get current location 
-function getLocation(runGetResults=false) {
+function getLocation(runGetResults = false) {
 
-    navigator.geolocation.getCurrentPosition((position) => {
+  navigator.geolocation.getCurrentPosition((position) => {
     currentLat = position.coords.latitude;
     console.log("🚀 ~ file: script.js:6 ~ navigator.geolocation.getCurrentPosition ~ lat", currentLat)
-    currentLong = position.coords.longitude;        
+    currentLong = position.coords.longitude;
     console.log("🚀 ~ file: script.js:8 ~ navigator.geolocation.getCurrentPosition ~ long", currentLong)
     if (runGetResults) {
       getResultsByCoordinates(currentLat, currentLong);
-    }    
-    });
+    }
+  });
 }
 
 
 // Get location id to pass to booking API to get list of preperties in the area
 function getResultsByCoordinates(lat, long) {
-    
-    // API call using coordinates
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'fe32bd232cmsh314f416fc05e978p120522jsn3a47d3a556d5',
-            'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
-        }
-    };
 
-    fetch('https://booking-com.p.rapidapi.com/v1/hotels/search-by-coordinates?longitude=' + long + '&filter_by_currency=AED&room_number=1&locale=en-gb&latitude=' + lat + '&order_by=popularity&units=metric&checkin_date=2023-07-15&adults_number=2&checkout_date=2023-07-16&page_number=0&categories_filter_ids=class%3A%3A2%2Cclass%3A%3A4%2Cfree_cancellation%3A%3A1&children_number=2&include_adjacency=true&children_ages=5%2C0', options)
-        .then(response => response.json())
-        .then(response => {
-            // Pass each listing to a function that will handle page formatting
-            console.log(response)
-            clearListings();
-            response.result.forEach(element => {                
-                displayListing(element);
-            });
-        })
-        .catch(err => console.error(err));
+  // API call using coordinates
+  const options = {
+    method: 'GET',
+    headers: {
+      // Mirek's api:
+      // 'X-RapidAPI-Key': 'fe32bd232cmsh314f416fc05e978p120522jsn3a47d3a556d5',
+      // 'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
+      // Jasiah's api:
+      'X-RapidAPI-Key': '6022fb032dmshf57a052fc96d656p1a6cdbjsnf1e4fb241847',
+      'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
+    }
+  };
+
+  fetch('https://booking-com.p.rapidapi.com/v1/hotels/search-by-coordinates?longitude=' + long + '&filter_by_currency=AED&room_number=1&locale=en-gb&latitude=' + lat + '&order_by=popularity&units=metric&checkin_date=2023-07-15&adults_number=2&checkout_date=2023-07-16&page_number=0&categories_filter_ids=class%3A%3A2%2Cclass%3A%3A4%2Cfree_cancellation%3A%3A1&children_number=2&include_adjacency=true&children_ages=5%2C0', options)
+    .then(response => response.json())
+    .then(response => {
+      // Pass each listing to a function that will handle page formatting
+      console.log(response)
+      clearListings();
+      response.result.forEach(element => {
+        displayListing(element);
+      });
+    })
+    .catch(err => console.error(err));
 }
 
 
 
 button.addEventListener("click", () => {
-    
-    if (!currentLat || !currentLong) {
-        getLocation(true);
-    } else {
-        getResultsByCoordinates(currentLat, currentLong)
-    }
-  });
+
+  if (!currentLat || !currentLong) {
+    getLocation(true);
+  } else {
+    getResultsByCoordinates(currentLat, currentLong)
+  }
+});
 
 
 
@@ -126,32 +130,32 @@ var zipSearch = document.getElementById("zip-search");
 
 zipSearch.addEventListener("click", getCoordinatesByZip);
 
-usZip.addEventListener("keypress", getCoordinatesByZip) 
-  function getCoordinatesByZip (event) {
-    // If the user presses the "Enter" key on the keyboard
+usZip.addEventListener("keypress", getCoordinatesByZip)
+function getCoordinatesByZip(event) {
+  // If the user presses the "Enter" key on the keyboard
 
-    var search = document.getElementById("zipCodeInput").value;
-    if (event.key === "Enter" || event.type === "click") {
+  var search = document.getElementById("zipCodeInput").value;
+  if (event.key === "Enter" || event.type === "click") {
 
-      fetch(
-       "https://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
-      )
-        .then((response) => response.json())
-        .then(function (data) {
-          console.log(data);
-          console.log(data.lat);
-          console.log(data.lon);
-          getResultsByCoordinates(data.lat, data.lon);
-        });
-    }
-  };
+    fetch(
+      "https://api.openweathermap.org/geo/1.0/zip?zip=" + search + ",US&appid=3bd4d0000400054c55b2ea6f37ae66a9"
+    )
+      .then((response) => response.json())
+      .then(function (data) {
+        console.log(data);
+        console.log(data.lat);
+        console.log(data.lon);
+        getResultsByCoordinates(data.lat, data.lon);
+      });
+  }
+};
 
 // Local Storage functionality
 var searchHistory = JSON.parse(localStorage.getItem('locStor')) || []
 console.log(searchHistory);
 
-function myFunction(event){
- 
+function myFunction(event) {
+
   var viewedList = document.getElementById('demo');
 
   var textName = event.target.closest('.listingLink').textContent;
@@ -174,7 +178,7 @@ function myFunction(event){
   listName.setAttribute('href', textLink);
   listName.setAttribute('target', '_blank');
   listName.innerHTML = textName;
-  
+
   ul.appendChild(listName);
   viewedList.appendChild(ul);
 
@@ -194,8 +198,8 @@ function init() {
     if (i === 10) {
       return;
     };
-    };
   };
+};
 
 
 
